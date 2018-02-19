@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_item_article_delete"
+        android:icon="@android:drawable/ic_delete"
+        android:title="Delete Selected Item (s)"
+        android:orderInCategory="21"
+        app:showAsAction="ifRoom|withText"
+        />
+
+    <item
+        android:id="@+id/menu_item_article_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Edit Selected Item"
+        android:orderInCategory="20"
+        app:showAsAction="ifRoom|withText"
+        />
+
+
+</menu>

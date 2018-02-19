@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="Display">
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/fontFaceArray"
+            android:entryValues="@array/fontFaceValues"
+            android:key="fontFace"
+            android:summary="%s"
+            android:title="Font Face" />
+
+
+        <com.muaqqibatun.raqib.NumberPickerPreference
+            android:defaultValue="26"
+            android:key="headerSize_picker"
+            android:summary="Text Size: %s"
+            android:title="Select Header Size"
+            app:MaxValue="40"
+            app:MinValue="20" />
+
+        <com.muaqqibatun.raqib.NumberPickerPreference
+            android:defaultValue="22"
+            android:key="subHeaderSize_picker"
+            android:summary="Text Size: %s"
+            android:title="Select SubHeader Size"
+            app:MaxValue="35"
+            app:MinValue="20" />
+
+        <com.muaqqibatun.raqib.NumberPickerPreference
+            android:defaultValue="18"
+            android:key="textSize_picker"
+            android:summary="Text Size: %s"
+            android:title="Select Text Size"
+            app:MaxValue="30"
+            app:MinValue="10" />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

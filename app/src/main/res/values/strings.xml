@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Raqib</string>
+    <string name="name_article_activity">ArticleActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="author_hint">Specify the Author</string>
+    <string name="article_body_hint">Enter the body of this work here.....</string>
+    <string name="article_text">Text</string>
+    <string name="article_body">Body of Text</string>
+    <string name="article_description_hint">Description</string>
+    <string name="article_description">Description</string>
+    <string name="article_author_hint">Author of this text</string>
+    <string name="article_author">Author</string>
+    <string name="article_title_hint">Title of this article</string>
+    <string name="article_title">Title</string>
+    <string name="name_article_editor_activity">Edit Article</string>
+    <string name="name_article_viewer_activity">Viewing Article</string>
+    <string name="add_article">Add</string>
+    <string name="edit_article">Edt</string>
+    <string name="info_article">Details</string>
+    <string name="name_preference_activity">Raqib Preferences</string>
+</resources>

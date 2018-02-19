@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/article_title" />
+
+    <TextView
+        android:id="@+id/article_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin"
+        android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+        android:layout_marginRight="@dimen/fragment_horizontal_margin"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin"
+        android:hint="@string/article_title_hint" />
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/article_author" />
+
+    <TextView
+        android:id="@+id/article_author_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin"
+        android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+        android:layout_marginRight="@dimen/fragment_horizontal_margin"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin"
+        android:hint="@string/article_author_hint" />
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/article_description" />
+
+    <TextView
+        android:id="@+id/article_description_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/fragment_horizontal_margin"
+        android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+        android:layout_marginRight="@dimen/fragment_horizontal_margin"
+        android:layout_marginStart="@dimen/fragment_horizontal_margin"
+        android:hint="@string/article_description_hint" />
+</LinearLayout>

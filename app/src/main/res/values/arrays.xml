@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="fontFaceArray">
+        <item>Advertising Bold</item>
+        <item>Advertising Light</item>
+        <item>Advertising Medium</item>
+        <item>Arabic Transparent Bold</item>
+        <item>Arabic Transparent</item>
+        <item>Boutros Ads Light</item>
+        <item>Boutros Ads Medium</item>
+        <item>Generator Black</item>
+        <item>MCS Silver</item>
+        <item>Simplified Arabic Bold</item>
+        <item>Simplified Arabic Fixed</item>
+        <item>Sultan Medium</item>
+        <item>Sultan Normal</item>
+    </string-array>
+
+    <string-array name="fontFaceValues">
+        <item>fonts/AdvertisingBold.ttf</item>
+        <item>fonts/AdvertisingLight.ttf</item>
+        <item>fonts/AdvertisingMedium.ttf</item>
+        <item>fonts/Arabic Transparent Bold.ttf</item>
+        <item>fonts/Arabic Transparent.ttf</item>
+        <item>fonts/Boutros Ads Light.ttf</item>
+        <item>fonts/Boutros Ads Medium.ttf</item>
+        <item>fonts/Generator Black.ttf</item>
+        <item>fonts/MCS SILVER.ttf</item>
+        <item>fonts/Simplified Arabic Bold.ttf</item>
+        <item>fonts/Simplified Arabic Fixed.ttf</item>
+        <item>fonts/Sultan Medium.ttf</item>
+        <item>fonts/Sultan normal.ttf</item>
+    </string-array>
+
+
+</resources>
