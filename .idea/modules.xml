@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Raqib.iml" filepath="$PROJECT_DIR$/Raqib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Raqib.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Raqib.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Raqib.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Raqib.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Raqib.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Raqib.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Raqib.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Raqib.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
 package com.muaqqibatun.raqib;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by abalhassans on 7/14/2015.

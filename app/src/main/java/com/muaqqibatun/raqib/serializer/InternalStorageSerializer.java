@@ -112,7 +112,13 @@ public class InternalStorageSerializer extends SerializerFactory {
     }
 
     private Reader getInputReader() throws FileNotFoundException {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+        File importDir = mContext.getExternalFilesDir(null);
+
+        InputStream is = new FileInputStream(new File(importDir, mFilename));
+        return new BufferedReader(new InputStreamReader(is));
+
+/*        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             InputStream is = new FileInputStream(new File(Environment.getExternalStorageDirectory(), mFilename));
             return new BufferedReader(new InputStreamReader(is));
 
@@ -120,17 +126,22 @@ public class InternalStorageSerializer extends SerializerFactory {
             InputStream is = mContext.openFileInput(mFilename);
             return new BufferedReader(new InputStreamReader(is));
 
-        }
+        }*/
     }
 
     private Writer getOutputWriter() throws FileNotFoundException {
 
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        File exportDir = mContext.getExternalFilesDir(null);
+
+        OutputStream os = new FileOutputStream(new File(exportDir, mFilename), false);
+        return new OutputStreamWriter(os);
+
+/*        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             OutputStream os = new FileOutputStream(new File(Environment.getExternalStorageDirectory(), mFilename), false);
             return new OutputStreamWriter(os);
         } else {
             OutputStream os = mContext.openFileOutput(mFilename, Context.MODE_PRIVATE);
             return new OutputStreamWriter(os);
-        }
+        }*/
     }
 }

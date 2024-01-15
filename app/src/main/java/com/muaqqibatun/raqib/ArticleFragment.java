@@ -1,17 +1,10 @@
 package com.muaqqibatun.raqib;
 
-import android.annotation.TargetApi;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.NavUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
+import androidx.fragment.app.Fragment;
+import androidx.core.app.NavUtils;
+
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.UUID;
 

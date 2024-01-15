@@ -2,13 +2,11 @@ package com.muaqqibatun.raqib;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.app.NavUtils;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -119,22 +116,18 @@ public class ArticleViewerFragment extends ArticleFragment {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        switch (id) {
-
-            case R.id.menu_item_article_viewer_editarticle:
-                editArticleActivity(myArticle);
-
-            case R.id.menu_item_article_details:
-                displayDetailsDialog(myArticle);
-                return true;
-
-            case R.id.action_settings:
-                openPreferencePanel();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if(id == R.id.menu_item_article_viewer_editarticle) {
+            editArticleActivity(myArticle);
+            displayDetailsDialog(myArticle);
+            return true;
+        } else if (id == R.id.menu_item_article_details) {
+            displayDetailsDialog(myArticle);
+            return true;
+        } else if (id == R.id.action_settings ) {
+            openPreferencePanel();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
         }
 
     }

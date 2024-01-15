@@ -2,11 +2,10 @@ package com.muaqqibatun.raqib;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.ListFragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -18,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -96,48 +94,46 @@ public class ArticleListFragment extends ListFragment {
                     Log.d(TAG, "In OnActionItemClicked " + item.getItemId());
                     //Toast.makeText(getActivity(), "Within OnActionItemClicked", Toast.LENGTH_SHORT).show();
 
-                    switch (item.getItemId()) {
+                    int id = item.getItemId();
 
-                        case R.id.menu_item_article_delete:
+                    if(id == R.id.menu_item_article_delete) {
 
-                            SparseBooleanArray selected = getListView().getCheckedItemPositions();
-                            for (int i = getListView().getCount(); i > 0; i--) {
-                                if (selected.get(i)) {
-                                    Article article = (Article) getListView().getAdapter().getItem(i);
-                                    Toast.makeText(getActivity(), "Removing " + article.getTitle(), Toast.LENGTH_SHORT).show();
-                                    Library.getInstance(getActivity()).removeArticle(article.getId());
-                                    ((ArticleAdapter) getListView().getAdapter()).notifyDataSetChanged();
-                                }
+                        SparseBooleanArray selected = getListView().getCheckedItemPositions();
+                        for (int i = getListView().getCount(); i > 0; i--) {
+                            if (selected.get(i)) {
+                                Article article = (Article) getListView().getAdapter().getItem(i);
+                                Toast.makeText(getActivity(), "Removing " + article.getTitle(), Toast.LENGTH_SHORT).show();
+                                Library.getInstance(getActivity()).removeArticle(article.getId());
+                                ((ArticleAdapter) getListView().getAdapter()).notifyDataSetChanged();
                             }
-                            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                                mode.finish();
+                        }
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+                            mode.finish();
+                        }
+                        return true;
+                    } else if (id == R.id.menu_item_article_edit) {
+
+                        Article selectedArticle = null;
+
+                        SparseBooleanArray selected = getListView().getCheckedItemPositions();
+                        for (int i = getListView().getCount(); i > 0; i--) {
+                            if (selected.get(i)) {
+                                selectedArticle = (Article) getListView().getAdapter().getItem(i);
+                                break;
                             }
-                            return true;
-                        case R.id.menu_item_article_edit:
+                        }
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
 
-                            Article selectedArticle = null;
+                            mode.finish();
+                        }
 
-                            selected = getListView().getCheckedItemPositions();
-                            for (int i = getListView().getCount(); i > 0; i--) {
-                                if (selected.get(i)) {
-                                    selectedArticle = (Article) getListView().getAdapter().getItem(i);
-                                    break;
-                                }
-                            }
-                            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-
-                                mode.finish();
-                            }
-
-                            Toast.makeText(getActivity(), "Editing " + selectedArticle.getTitle(), Toast.LENGTH_SHORT).show();
-                            editArticleActivity(selectedArticle);
+                        Toast.makeText(getActivity(), "Editing " + selectedArticle.getTitle(), Toast.LENGTH_SHORT).show();
+                        editArticleActivity(selectedArticle);
 
 
-
-
-                            return true;
-                        default:
-                            return false;
+                        return true;
+                    } else {
+                        return false;
                     }
 
                 }
@@ -187,15 +183,14 @@ public class ArticleListFragment extends ListFragment {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.action_settings:
-                openPreferencePanel();
-                return true;
-            case R.id.menu_item_article_list_addarticle:
-                addArticleActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if(id == R.id.action_settings) {
+            openPreferencePanel();
+            return true;
+        }else if(id == R.id.menu_item_article_list_addarticle) {
+            addArticleActivity();
+            return true;
+        }else{
+            return super.onOptionsItemSelected(item);
         }
 
     }
@@ -255,7 +250,7 @@ public class ArticleListFragment extends ListFragment {
 
         try {
             myLibrary.saveArticles();
-            Toast.makeText(getActivity(), "Library Saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Library Saved: " + getActivity().getExternalFilesDir(null).toString(), Toast.LENGTH_SHORT).show();
         } catch (DataException e) {
             Toast.makeText(getActivity(), "Problems Saving Library" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -272,18 +267,15 @@ public class ArticleListFragment extends ListFragment {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.menu_item_article_edit:
-                Log.d(TAG, "edit item selected");
-                return true;
-            case R.id.menu_item_article_delete:
-                Log.d(TAG, "delete item selected");
-
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.menu_item_article_edit) {
+            Log.d(TAG, "edit item selected");
+            return true;
+        }else if(id == R.id.menu_item_article_delete) {
+            Log.d(TAG, "delete item selected");
+            return true;
+        }else{
+            return super.onContextItemSelected(item);
         }
-
     }
 }

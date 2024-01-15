@@ -1,7 +1,6 @@
 package com.muaqqibatun.raqib;
 
-import android.support.v4.app.Fragment;
-import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 
 import java.util.UUID;
 
