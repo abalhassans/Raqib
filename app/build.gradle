@@ -5,7 +5,7 @@ android {
     compileSdk 33
     defaultConfig {
         applicationId "com.muaqqibatun.raqib"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"

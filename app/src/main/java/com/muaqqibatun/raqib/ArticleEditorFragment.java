@@ -1,10 +1,7 @@
 package com.muaqqibatun.raqib;
 
-import android.annotation.TargetApi;
-import android.os.Build;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.core.app.NavUtils;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -12,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.core.app.NavUtils;
+
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -29,11 +29,10 @@ public class ArticleEditorFragment extends ArticleFragment {
         return frag;
     }
 
-    @TargetApi(11)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        TextFormatter.getFormatter(getActivity()).getTypeface();
+        Typeface tf = TextFormatter.getFormatter(getActivity()).getTypeface();
 
         View view = inflater.inflate(R.layout.frg_article_edit, container, false);
 
@@ -45,7 +44,7 @@ public class ArticleEditorFragment extends ArticleFragment {
                 myArticle.setTitle(s.toString());
             }
         });
-        mTitleEditText.setTypeface(TextFormatter.getFormatter(getActivity()).getTypeface());
+        mTitleEditText.setTypeface(tf);
 
 
         EditText mAuthorEditText = (EditText) view.findViewById(R.id.article_author_edittext);
@@ -56,7 +55,7 @@ public class ArticleEditorFragment extends ArticleFragment {
                 myArticle.setAuthor(s.toString());
             }
         });
-        mAuthorEditText.setTypeface(TextFormatter.getFormatter(getActivity()).getTypeface());
+        mAuthorEditText.setTypeface(tf);
 
 
 
@@ -68,11 +67,11 @@ public class ArticleEditorFragment extends ArticleFragment {
                 myArticle.setDescription(s.toString());
             }
         });
-        mDescriptionEditText.setTypeface(TextFormatter.getFormatter(getActivity()).getTypeface());
+        mDescriptionEditText.setTypeface(tf);
 
         EditText mBodyEditText = (EditText) view.findViewById(R.id.article_body_edittext);
         mBodyEditText.setText(myArticle.getBody());
-        mBodyEditText.setTypeface(TextFormatter.getFormatter(getActivity()).getTypeface());  //Arabic Font
+        mBodyEditText.setTypeface(tf);  //Arabic Font
         mBodyEditText.addTextChangedListener(new myTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -80,14 +79,12 @@ public class ArticleEditorFragment extends ArticleFragment {
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            try {
-                if(NavUtils.getParentActivityName(getActivity())!=null)
+        try {
+            if (NavUtils.getParentActivityName(Objects.requireNonNull(getActivity())) != null)
 
-                    getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-            } catch (NullPointerException e) {
+                getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (NullPointerException e) {
 
-            }
         }
 
         return view;

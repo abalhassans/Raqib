@@ -1,7 +1,5 @@
 package com.muaqqibatun.raqib;
 
-import android.content.EntityIterator;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.fragment.app.ListFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -23,9 +21,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.ListFragment;
+
 import com.muaqqibatun.raqib.serializer.DataException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by abalhassans on 7/14/2015.
@@ -38,7 +39,7 @@ public class ArticleListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.app_name);
+        Objects.requireNonNull(getActivity()).setTitle(R.string.app_name);
         setHasOptionsMenu(true);
         setRetainInstance(true);
 
@@ -64,87 +65,78 @@ public class ArticleListFragment extends ListFragment {
             }
         });
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            registerForContextMenu(lview);
-        }else{
-            lview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-            lview.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-                @Override
-                public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+        lview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        lview.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override
+            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
 
-                }
+            }
 
-                @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                @Override
-                public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                    MenuInflater inflater = mode.getMenuInflater();
-                    inflater.inflate(R.menu.menu_article_list_context, menu);
+            @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                MenuInflater inflater = mode.getMenuInflater();
+                inflater.inflate(R.menu.menu_article_list_context, menu);
+                return true;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+
+                Log.d(TAG, "In OnActionItemClicked " + item.getItemId());
+                //Toast.makeText(getActivity(), "Within OnActionItemClicked", Toast.LENGTH_SHORT).show();
+
+                int id = item.getItemId();
+
+                if(id == R.id.menu_item_article_delete) {
+
+                    SparseBooleanArray selected = getListView().getCheckedItemPositions();
+                    for (int i = getListView().getCount(); i > 0; i--) {
+                        if (selected.get(i)) {
+                            Article article = (Article) getListView().getAdapter().getItem(i);
+                            Toast.makeText(getActivity(), "Removing " + article.getTitle(), Toast.LENGTH_SHORT).show();
+                            Library.getInstance(getActivity()).removeArticle(article.getId());
+                            ((ArticleAdapter) getListView().getAdapter()).notifyDataSetChanged();
+                        }
+                    }
+                    mode.finish();
                     return true;
-                }
+                } else if (id == R.id.menu_item_article_edit) {
 
-                @Override
-                public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                    Article selectedArticle = null;
+
+                    SparseBooleanArray selected = getListView().getCheckedItemPositions();
+                    for (int i = getListView().getCount(); i > 0; i--) {
+                        if (selected.get(i)) {
+                            selectedArticle = (Article) getListView().getAdapter().getItem(i);
+                            break;
+                        }
+                    }
+                    mode.finish();
+
+                    Toast.makeText(getActivity(), "Editing " + selectedArticle.getTitle(), Toast.LENGTH_SHORT).show();
+                    editArticleActivity(selectedArticle);
+
+
+                    return true;
+                } else {
                     return false;
                 }
 
-                @Override
-                public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
 
 
-                    Log.d(TAG, "In OnActionItemClicked " + item.getItemId());
-                    //Toast.makeText(getActivity(), "Within OnActionItemClicked", Toast.LENGTH_SHORT).show();
-
-                    int id = item.getItemId();
-
-                    if(id == R.id.menu_item_article_delete) {
-
-                        SparseBooleanArray selected = getListView().getCheckedItemPositions();
-                        for (int i = getListView().getCount(); i > 0; i--) {
-                            if (selected.get(i)) {
-                                Article article = (Article) getListView().getAdapter().getItem(i);
-                                Toast.makeText(getActivity(), "Removing " + article.getTitle(), Toast.LENGTH_SHORT).show();
-                                Library.getInstance(getActivity()).removeArticle(article.getId());
-                                ((ArticleAdapter) getListView().getAdapter()).notifyDataSetChanged();
-                            }
-                        }
-                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-                            mode.finish();
-                        }
-                        return true;
-                    } else if (id == R.id.menu_item_article_edit) {
-
-                        Article selectedArticle = null;
-
-                        SparseBooleanArray selected = getListView().getCheckedItemPositions();
-                        for (int i = getListView().getCount(); i > 0; i--) {
-                            if (selected.get(i)) {
-                                selectedArticle = (Article) getListView().getAdapter().getItem(i);
-                                break;
-                            }
-                        }
-                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
-
-                            mode.finish();
-                        }
-
-                        Toast.makeText(getActivity(), "Editing " + selectedArticle.getTitle(), Toast.LENGTH_SHORT).show();
-                        editArticleActivity(selectedArticle);
-
-
-                        return true;
-                    } else {
-                        return false;
-                    }
-
-                }
-
-                @Override
-                public void onDestroyActionMode(ActionMode mode) {
-
-
-                }
-            });
-        }
+            }
+        });
 
         return view;
     }
@@ -219,7 +211,7 @@ public class ArticleListFragment extends ListFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = getActivity().getLayoutInflater().inflate(R.layout.frg_article_listitem, null);
+                convertView = Objects.requireNonNull(getActivity()).getLayoutInflater().inflate(R.layout.frg_article_listitem, null);
             }
             Article article = getItem(position);
 
@@ -250,7 +242,7 @@ public class ArticleListFragment extends ListFragment {
 
         try {
             myLibrary.saveArticles();
-            Toast.makeText(getActivity(), "Library Saved: " + getActivity().getExternalFilesDir(null).toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Library Saved: " + Objects.requireNonNull(getActivity()).getExternalFilesDir(null).toString(), Toast.LENGTH_SHORT).show();
         } catch (DataException e) {
             Toast.makeText(getActivity(), "Problems Saving Library" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -262,7 +254,7 @@ public class ArticleListFragment extends ListFragment {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        getActivity().getMenuInflater().inflate(R.menu.menu_article_list_context, menu);
+        Objects.requireNonNull(getActivity()).getMenuInflater().inflate(R.menu.menu_article_list_context, menu);
     }
 
     @Override
