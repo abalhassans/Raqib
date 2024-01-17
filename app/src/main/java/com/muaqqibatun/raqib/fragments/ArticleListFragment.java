@@ -1,4 +1,4 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.fragments;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -23,6 +23,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.ListFragment;
 
+import com.muaqqibatun.raqib.Article;
+import com.muaqqibatun.raqib.Library;
+import com.muaqqibatun.raqib.activities.MyPreferenceActivity;
+import com.muaqqibatun.raqib.R;
+import com.muaqqibatun.raqib.utils.TextFormatter;
+import com.muaqqibatun.raqib.activities.ArticleEditorActivity;
+import com.muaqqibatun.raqib.activities.ArticleViewerActivity;
 import com.muaqqibatun.raqib.serializer.DataException;
 
 import java.util.ArrayList;

@@ -1,6 +1,9 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.activities;
 
 import androidx.fragment.app.Fragment;
+
+import com.muaqqibatun.raqib.fragments.ArticleEditorFragment;
+import com.muaqqibatun.raqib.fragments.ArticleFragment;
 
 import java.util.UUID;
 

@@ -1,9 +1,11 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.activities;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.muaqqibatun.raqib.R;
 
 /**
  * Created by abalhassans on 7/14/2015.

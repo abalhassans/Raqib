@@ -1,10 +1,13 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.core.app.NavUtils;
 
 import android.view.MenuItem;
+
+import com.muaqqibatun.raqib.Article;
+import com.muaqqibatun.raqib.Library;
 
 import java.util.UUID;
 

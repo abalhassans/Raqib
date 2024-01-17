@@ -7,7 +7,7 @@
         android:theme="@style/CustomActionBarTheme">
         <!-- "@style/Base.Theme.AppCompat.Light">  -->
         <activity
-            android:name=".ArticleListActivity"
+            android:name=".activities.ArticleListActivity"
             android:label="@string/app_name"
             android:exported="true">
 
@@ -18,35 +18,35 @@
 
         </activity>
         <activity
-            android:name=".ArticleEditorActivity"
+            android:name=".activities.ArticleEditorActivity"
             android:label="@string/name_article_editor_activity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ArticleListActivity" />
+                android:value=".activities.ArticleListActivity" />
         </activity>
         <activity
-            android:name=".MyPreferenceActivity"
+            android:name=".activities.MyPreferenceActivity"
             android:label="@string/name_preference_activity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ArticleListActivity" />
+                android:value=".activities.ArticleListActivity" />
         </activity>
 
 
         <activity
-            android:name=".ArticleViewerActivity"
+            android:name=".activities.ArticleViewerActivity"
             android:label="@string/name_article_viewer_activity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ArticleListActivity" />
+                android:value=".activities.ArticleListActivity" />
         </activity>
     </application>
 
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
 

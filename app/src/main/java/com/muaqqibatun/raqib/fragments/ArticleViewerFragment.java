@@ -1,4 +1,4 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.fragments;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -15,6 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.muaqqibatun.raqib.Article;
+import com.muaqqibatun.raqib.activities.MyPreferenceActivity;
+import com.muaqqibatun.raqib.R;
+import com.muaqqibatun.raqib.utils.TextFormatter;
+import com.muaqqibatun.raqib.activities.ArticleEditorActivity;
 
 import java.util.UUID;
 

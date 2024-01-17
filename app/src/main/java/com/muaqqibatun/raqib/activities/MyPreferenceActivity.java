@@ -1,4 +1,4 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.activities;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+
+import com.muaqqibatun.raqib.R;
 
 /**
  * Created by abalhassans on 7/19/2015.

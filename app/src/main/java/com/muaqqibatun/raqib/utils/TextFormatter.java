@@ -1,14 +1,10 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Type;
 
 /**
  * Created by abalhassans on 7/23/2015.

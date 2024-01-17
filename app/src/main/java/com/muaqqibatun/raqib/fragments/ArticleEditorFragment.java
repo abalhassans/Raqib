@@ -1,4 +1,4 @@
-package com.muaqqibatun.raqib;
+package com.muaqqibatun.raqib.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import androidx.core.app.NavUtils;
+
+import com.muaqqibatun.raqib.R;
+import com.muaqqibatun.raqib.utils.TextFormatter;
 
 import java.util.Objects;
 import java.util.UUID;

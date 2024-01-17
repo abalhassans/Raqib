@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
@@ -68,11 +69,8 @@ public class InternalStorageSerializer extends SerializerFactory {
                 }catch(Exception e){
 
                 }
-
             }
         }
-
-
     }
 
     @Override
@@ -113,10 +111,21 @@ public class InternalStorageSerializer extends SerializerFactory {
 
     private Reader getInputReader() throws FileNotFoundException {
 
-        File importDir = mContext.getExternalFilesDir(null);
 
-        InputStream is = new FileInputStream(new File(importDir, mFilename));
-        return new BufferedReader(new InputStreamReader(is));
+        // Attempt to read the downloads directory first
+
+        File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File downloadFile = new File(downloadsDir, "Raqib.json");
+        if(downloadFile.exists() && !downloadFile.isDirectory()){
+            InputStream is = new FileInputStream(downloadFile);
+            return new BufferedReader(new InputStreamReader(is));
+        }else {
+
+            File importDir = mContext.getExternalFilesDir(null);
+
+            InputStream is = new FileInputStream(new File(importDir, mFilename));
+            return new BufferedReader(new InputStreamReader(is));
+        }
 
 /*        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             InputStream is = new FileInputStream(new File(Environment.getExternalStorageDirectory(), mFilename));
